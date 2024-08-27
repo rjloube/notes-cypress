@@ -1,0 +1,17 @@
+{
+  "name": "notes-app-cypress",
+  "version": "1.0.0",
+  "description": "cypress tests for full stack open course notes app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
+  },
+  "author": "Russell Loube",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.13.2",
+    "eslint-plugin-cypress": "^3.4.0",
+    "globals": "^15.9.0"
+  }
+}
