@@ -7,7 +7,7 @@ describe("Note app", function () {
       password: "sekret",
     };
     cy.request("POST", "http://localhost:3001/api/users", user);
-    cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:5173/");
   });
 
   it("front page can be opened", function () {
@@ -15,6 +15,20 @@ describe("Note app", function () {
     cy.contains(
       "Note app, Department of Computer Science, University of Helsinki 2023"
     );
+  });
+
+  it.only("login fails with wrong password", function () {
+    cy.contains("log in").click();
+    cy.get("#username").type("mluukkai");
+    cy.get("#password").type("wrong");
+    cy.get("#login-button").click();
+
+    cy.get(".error")
+      .should("contain", "wrong credentials")
+      .and("have.css", "color", "rgb(255, 0, 0)")
+      .and("have.css", "border-style", "solid");
+
+    cy.get("html").should("not.contain", "Matti Luukkainen logged in");
   });
 
   it("user can log in", function () {
